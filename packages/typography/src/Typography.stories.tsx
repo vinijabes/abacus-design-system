@@ -76,7 +76,9 @@ export const AllStyles: Story = {
     <div className="flex max-w-3xl flex-col gap-10">
       {categories.map((category) => (
         <div key={category} className="flex flex-col gap-4">
-          <p className="text-xs font-medium text-text-on-muted">{category}</p>
+          <Typography category="Label" size="XS">
+            {category}
+          </Typography>
           <div className="flex flex-col gap-3 border-t border-border-color pt-4">
             {sizes.map((size) => (
               <Typography key={`${category}-${size}`} category={category} size={size}>

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Button } from "@design-system/button";
+import { Typography } from "@design-system/typography";
 import {
   Card,
   CardContent,
@@ -26,9 +27,9 @@ export const Basic: Story = {
     <div className="w-[min(100%,560px)]">
       <Card>
         <CardContent>
-          <p className="text-sm leading-5 text-text-on-background">
+          <Typography category="Body" size="M">
             This is a basic card with just content. No header or footer.
-          </p>
+          </Typography>
         </CardContent>
       </Card>
     </div>
@@ -46,10 +47,10 @@ export const WithHeader: Story = {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm leading-5 text-text-on-background">
+          <Typography category="Body" size="M">
             This card has a header with a title and description, making it clear
             what the card contains.
-          </p>
+          </Typography>
         </CardContent>
       </Card>
     </div>
@@ -67,10 +68,10 @@ export const WithHeaderAndFooter: Story = {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm leading-5 text-text-on-background">
+          <Typography category="Body" size="M">
             This card has a header with a title and description, making it clear
             what the card contains.
-          </p>
+          </Typography>
         </CardContent>
         <CardFooter>
           <Button type="button" variant="outline" size="md">

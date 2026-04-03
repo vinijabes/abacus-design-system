@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Icon } from "@design-system/icon";
+import { Typography } from "@design-system/typography";
 import { Button } from "./Button";
 
 const meta = {
@@ -60,7 +62,9 @@ export const AllVariants: Story = {
           </Button>
         ))}
       </div>
-      <p className="text-text-on-muted text-sm">Disabled</p>
+      <Typography category="Body" size="M" className="text-text-on-muted">
+        Disabled
+      </Typography>
       <div className="flex flex-wrap items-center gap-3">
         {variants.map((v) => (
           <Button key={v} variant={v} disabled>
@@ -88,11 +92,19 @@ export const Sizes: Story = {
   ),
 };
 
-export const Icon: Story = {
+export const IconButton: Story = {
   args: {
     size: "icon",
     variant: "primary",
-    children: "+",
+    children: (
+      <Icon
+        name="plus"
+        size="sm"
+        variant="clear"
+        className="text-text-on-primary"
+        aria-hidden
+      />
+    ),
     "aria-label": "Add",
   },
 };

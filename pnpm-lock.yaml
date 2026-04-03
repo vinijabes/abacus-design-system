@@ -73,6 +73,10 @@ importers:
         version: 6.4.1(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0)
 
   packages/badge:
+    dependencies:
+      '@design-system/typography':
+        specifier: workspace:*
+        version: link:../typography
     devDependencies:
       '@design-system/tsconfig':
         specifier: workspace:*
@@ -95,9 +99,15 @@ importers:
 
   packages/button:
     devDependencies:
+      '@design-system/icon':
+        specifier: workspace:*
+        version: link:../icon
       '@design-system/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      '@design-system/typography':
+        specifier: workspace:*
+        version: link:../typography
       '@types/react':
         specifier: ^19.0.0
         version: 19.2.14
@@ -115,6 +125,10 @@ importers:
         version: 5.9.3
 
   packages/card:
+    dependencies:
+      '@design-system/typography':
+        specifier: workspace:*
+        version: link:../typography
     devDependencies:
       '@design-system/button':
         specifier: workspace:*

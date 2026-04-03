@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Typography } from "@design-system/typography";
 import { Badge } from "./Badge";
 
 const meta = {
@@ -53,21 +54,27 @@ const variants = ["solid", "outline", "subtle"] as const;
 export const AllVariants: Story = {
   render: () => (
     <div className="flex flex-col gap-6">
-      <div className="grid grid-cols-[auto_repeat(3,minmax(0,1fr))] items-center gap-x-4 gap-y-3 text-sm">
+      <div className="grid grid-cols-[auto_repeat(3,minmax(0,1fr))] items-center gap-x-4 gap-y-3">
         <span className="text-text-on-muted" aria-hidden />
         {variants.map((v) => (
-          <span
+          <Typography
             key={v}
-            className="text-text-on-muted font-medium capitalize"
+            category="Label"
+            size="M"
+            className="text-text-on-muted capitalize"
           >
             {v}
-          </span>
+          </Typography>
         ))}
         {colors.map((color) => (
           <Fragment key={color}>
-            <span className="text-text-on-muted font-medium capitalize">
+            <Typography
+              category="Label"
+              size="M"
+              className="text-text-on-muted capitalize"
+            >
               {color}
-            </span>
+            </Typography>
             {variants.map((variant) => (
               <Badge key={variant} color={color} variant={variant}>
                 Default

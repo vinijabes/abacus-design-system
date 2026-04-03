@@ -3,6 +3,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from "react";
+import { Typography } from "@design-system/typography";
 
 export type BadgeColor =
   | "primary"
@@ -69,7 +70,7 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
   ref,
 ) {
   const base =
-    "inline-flex items-center justify-center rounded-md border border-solid font-medium text-xs px-2.5 py-0.5 whitespace-nowrap";
+    "inline-flex items-center justify-center rounded-md border border-solid px-2.5 py-0.5 whitespace-nowrap";
 
   const variantClasses = variantColorClasses(variant, color);
   const borderTone =
@@ -86,7 +87,14 @@ export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(function Badge(
 
   return (
     <span ref={ref} className={mergedClassName} {...rest}>
-      {children}
+      <Typography
+        as="span"
+        category="Label"
+        size="XS"
+        className="!text-inherit"
+      >
+        {children}
+      </Typography>
     </span>
   );
 });

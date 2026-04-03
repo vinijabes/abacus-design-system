@@ -3,6 +3,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from "react";
+import { Typography } from "@design-system/typography";
 
 function mergeClassNames(...parts: (string | undefined)[]): string {
   return parts.filter(Boolean).join(" ").trim();
@@ -62,16 +63,16 @@ export type CardTitleProps = HTMLAttributes<HTMLHeadingElement> & {
 export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
   function CardTitle({ className, children, ...rest }, ref) {
     return (
-      <h3
+      <Typography
         ref={ref}
-        className={mergeClassNames(
-          "text-base font-medium leading-none tracking-tight text-text-on-background",
-          className,
-        )}
+        as="h3"
+        category="Heading"
+        size="XS"
+        className={mergeClassNames("leading-none tracking-tight", className)}
         {...rest}
       >
         {children}
-      </h3>
+      </Typography>
     );
   },
 );
@@ -87,13 +88,16 @@ export const CardDescription = forwardRef<
   CardDescriptionProps
 >(function CardDescription({ className, children, ...rest }, ref) {
   return (
-    <p
+    <Typography
       ref={ref}
-      className={mergeClassNames("text-base text-text-on-muted", className)}
+      as="p"
+      category="Body"
+      size="L"
+      className={mergeClassNames("text-text-on-muted", className)}
       {...rest}
     >
       {children}
-    </p>
+    </Typography>
   );
 });
 
