@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "storybook/test";
 import { Typography } from "@design-system/typography";
 import { Badge } from "./Badge";
 
@@ -9,7 +10,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "test"],
   argTypes: {
     color: {
       control: "select",
@@ -37,6 +38,10 @@ export const Playground: Story = {
     children: "Default",
     color: "primary",
     variant: "solid",
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByText("Default")).toBeVisible();
   },
 };
 

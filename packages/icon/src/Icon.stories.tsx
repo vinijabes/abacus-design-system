@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, waitFor } from "storybook/test";
 import { Icon } from "./Icon";
 
 const meta = {
@@ -7,7 +8,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "test"],
   argTypes: {
     name: { control: "text" },
     size: {
@@ -40,7 +41,13 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvasElement }) => {
+    await waitFor(() => {
+      expect(canvasElement.querySelector("svg")).toBeTruthy();
+    });
+  },
+};
 
 export const AllVariantsPrimary: Story = {
   render: () => (

@@ -61,7 +61,8 @@ Do not use `npm`’s `workspaces` field in the root `package.json`; the workspac
 ## Storybook
 
 - **Framework**: `@storybook/react-vite` (Storybook 10.x).
-- **Addons**: `@storybook/addon-docs` (listed in [`main.ts`](../apps/storybook/.storybook/main.ts)).
+- **Shared versions**: Storybook-related package versions are defined once in the [`catalog`](https://pnpm.io/catalogs) section of [`pnpm-workspace.yaml`](../pnpm-workspace.yaml). Workspace packages reference them with `"catalog:"` in `package.json` (e.g. `storybook`, `@storybook/react`) so every package stays on the same release.
+- **Addons**: `@storybook/addon-docs`, `@storybook/addon-vitest` (listed in [`main.ts`](../apps/storybook/.storybook/main.ts)).
 - **Stories location**: **Colocated** with components, e.g. `packages/button/src/Button.stories.tsx`. The glob is absolute from the repo root: `packages/*/src/**/*.stories.@(ts|tsx)` (see [`main.ts`](../apps/storybook/.storybook/main.ts)).
 - **Preview**: [`preview.ts`](../apps/storybook/.storybook/preview.ts) imports the global stylesheet once.
 
@@ -81,7 +82,7 @@ Run from the repository root:
 2. Point `exports` / `main` / `types` at `src` entrypoints (same pattern as [`packages/button`](../packages/button)).
 3. Add `"extends": "@design-system/tsconfig/react-library.json"` in `tsconfig.json`; add `@design-system/tsconfig` as `devDependency` with `workspace:*`.
 4. Add **`@source`** coverage if new paths are not matched by existing globs in [`apps/storybook/src/styles.css`](../apps/storybook/src/styles.css) (extend the glob if components live outside `packages/*/src`).
-5. Colocate `*.stories.tsx` under the package `src/` tree; Storybook picks them up via the existing `main.ts` glob.
+5. Colocate `*.stories.tsx` under the package `src/` tree; Storybook picks them up via the existing `main.ts` glob. If the story imports `storybook/test`, add `storybook` and `@storybook/react` as `devDependencies` using `"catalog:"` (same as other component packages).
 6. Wire the package into Storybook if it must be imported by name: add `workspace:*` dependency in [`apps/storybook/package.json`](../apps/storybook/package.json) when the story imports `@design-system/<name>`.
 
 ## Files agents often touch

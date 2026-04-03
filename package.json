@@ -5,7 +5,9 @@
   "scripts": {
     "storybook": "pnpm --filter @design-system/storybook run storybook",
     "build-storybook": "pnpm --filter @design-system/storybook run build-storybook",
-    "typecheck": "pnpm -r run --if-present typecheck"
+    "typecheck": "pnpm -r run --if-present typecheck",
+    "test-storybook": "pnpm --filter @design-system/storybook run test-storybook",
+    "playwright:install": "pnpm --filter @design-system/storybook run playwright:install"
   },
   "engines": {
     "node": ">=20",

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "storybook/test";
 import {
   Typography,
   type TypographyCategory,
@@ -11,7 +12,7 @@ const meta = {
   parameters: {
     layout: "padded",
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "test"],
   argTypes: {
     category: {
       control: "select",
@@ -66,6 +67,12 @@ export const Playground: Story = {
       {sampleByCombo[args.category ?? "Heading"][args.size ?? "XL"]}
     </Typography>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      canvas.getByText(/Heading 1 — Page title/),
+    ).toBeVisible();
+  },
 };
 
 const categories: TypographyCategory[] = ["Heading", "Label", "Body"];

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "storybook/test";
 import { Button } from "@design-system/button";
 import { Typography } from "@design-system/typography";
 import {
@@ -16,7 +17,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "test"],
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -34,6 +35,12 @@ export const Basic: Story = {
       </Card>
     </div>
   ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      canvas.getByText(/basic card with just content/i),
+    ).toBeVisible();
+  },
 };
 
 export const WithHeader: Story = {

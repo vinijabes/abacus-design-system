@@ -22,6 +22,8 @@
   "devDependencies": {
     "@design-system/button": "workspace:*",
     "@design-system/tsconfig": "workspace:*",
+    "@storybook/react": "catalog:",
+    "storybook": "catalog:",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "react": "^19.0.0",

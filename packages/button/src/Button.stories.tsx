@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, within } from "storybook/test";
 import { Icon } from "@design-system/icon";
 import { Typography } from "@design-system/typography";
 import { Button } from "./Button";
@@ -9,7 +10,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  tags: ["autodocs"],
+  tags: ["autodocs", "test"],
   argTypes: {
     variant: {
       control: "select",
@@ -40,6 +41,10 @@ export const Playground: Story = {
     variant: "primary",
     size: "md",
     fullWidth: false,
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole("button", { name: "Button" })).toBeVisible();
   },
 };
 

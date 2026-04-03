@@ -7,10 +7,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const monorepoRoot = path.resolve(__dirname, "../../..");
 
 const config: StorybookConfig = {
-  stories: [
-    path.join(monorepoRoot, "packages/*/src/**/*.stories.@(ts|tsx)"),
-  ],
-  addons: ["@storybook/addon-docs"],
+  // Relative to `.storybook/` so Vitest + portable stories resolve globs correctly (absolute paths break the Vitest addon).
+  stories: ["../../../packages/*/src/**/*.stories.@(ts|tsx)"],
+  addons: ["@storybook/addon-docs", "@storybook/addon-vitest"],
   framework: {
     name: "@storybook/react-vite",
     options: {},

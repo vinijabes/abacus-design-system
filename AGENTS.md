@@ -16,4 +16,4 @@ Add new long-form docs under `[docs/](docs/)` and link them here.
 
 - **Package manager:** pnpm (see root `package.json` `packageManager` and `[pnpm-workspace.yaml](pnpm-workspace.yaml)`).
 - **Scope:** `@design-system/`* packages live under `packages/`; apps under `apps/`.
-- **Commands (from repo root):** `pnpm run storybook`, `pnpm run build-storybook`, `pnpm run typecheck`.
+- **Commands (from repo root):** `pnpm run storybook`, `pnpm run build-storybook`, `pnpm run typecheck`, `pnpm run test-storybook` (Vitest + `@storybook/addon-vitest`). For browser tests, install Chromium once: `pnpm run playwright:install` (uses the local `playwright` package — do not run bare `playwright` on the PATH).
