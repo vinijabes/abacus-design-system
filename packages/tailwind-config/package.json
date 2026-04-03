@@ -4,5 +4,8 @@
   "private": true,
   "exports": {
     "./theme.css": "./theme.css"
+  },
+  "scripts": {
+    "build": "node scripts/build-theme.mjs"
   }
 }
