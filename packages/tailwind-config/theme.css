@@ -66,6 +66,8 @@
   --radius-lg: var(--primitive-radius-lg);
   --radius-xl: var(--primitive-radius-xl);
   --radius: var(--primitive-radius-sm);
+  /* Sans: Inter matches Figma typography; load face in app CSS (e.g. Storybook styles.css). */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   /* Font sizes: Tailwind v4 uses --text-* and --text-*--line-height */
   --text-xs: var(--primitive-font-size-xs);
   --text-xs--line-height: var(--primitive-line-height-xs);

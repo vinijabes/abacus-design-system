@@ -10,12 +10,21 @@ importers:
 
   apps/storybook:
     dependencies:
+      '@design-system/badge':
+        specifier: workspace:*
+        version: link:../../packages/badge
       '@design-system/button':
         specifier: workspace:*
         version: link:../../packages/button
+      '@design-system/card':
+        specifier: workspace:*
+        version: link:../../packages/card
       '@design-system/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
+      '@design-system/typography':
+        specifier: workspace:*
+        version: link:../../packages/typography
     devDependencies:
       '@design-system/tsconfig':
         specifier: workspace:*
@@ -60,8 +69,53 @@ importers:
         specifier: ^6.0.0
         version: 6.4.1(@types/node@22.19.17)(jiti@2.6.1)(lightningcss@1.32.0)
 
+  packages/badge:
+    devDependencies:
+      '@design-system/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+
   packages/button:
     devDependencies:
+      '@design-system/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+
+  packages/card:
+    devDependencies:
+      '@design-system/button':
+        specifier: workspace:*
+        version: link:../button
       '@design-system/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
@@ -84,6 +138,27 @@ importers:
   packages/tailwind-config: {}
 
   packages/tsconfig: {}
+
+  packages/typography:
+    devDependencies:
+      '@design-system/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
 
 packages:
 

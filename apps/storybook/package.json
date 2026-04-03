@@ -9,8 +9,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@design-system/badge": "workspace:*",
     "@design-system/button": "workspace:*",
-    "@design-system/tailwind-config": "workspace:*"
+    "@design-system/card": "workspace:*",
+    "@design-system/tailwind-config": "workspace:*",
+    "@design-system/typography": "workspace:*"
   },
   "devDependencies": {
     "@design-system/tsconfig": "workspace:*",
