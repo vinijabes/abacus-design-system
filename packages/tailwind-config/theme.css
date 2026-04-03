@@ -1,0 +1,4 @@
+@theme {
+  --color-brand: oklch(0.55 0.18 250);
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+}
