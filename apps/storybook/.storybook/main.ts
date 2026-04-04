@@ -9,7 +9,12 @@ const monorepoRoot = path.resolve(__dirname, "../../..");
 const config: StorybookConfig = {
   // Relative to `.storybook/` so Vitest + portable stories resolve globs correctly (absolute paths break the Vitest addon).
   stories: ["../../../packages/*/src/**/*.stories.@(ts|tsx)"],
-  addons: ["@storybook/addon-docs", "@storybook/addon-vitest"],
+  addons: [
+    "@storybook/addon-docs",
+    "@storybook/addon-a11y",
+    "@storybook/addon-vitest",
+    "@chromatic-com/storybook",
+  ],
   framework: {
     name: "@storybook/react-vite",
     options: {},

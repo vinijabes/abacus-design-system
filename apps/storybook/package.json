@@ -21,7 +21,9 @@
     "@design-system/typography": "workspace:*"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^5.1.1",
     "@design-system/tsconfig": "workspace:*",
+    "@storybook/addon-a11y": "catalog:",
     "@storybook/addon-docs": "catalog:",
     "@storybook/addon-vitest": "catalog:",
     "@storybook/react": "catalog:",
