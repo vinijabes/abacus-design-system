@@ -1,4 +1,5 @@
 import { Button } from "@design-system/button";
+import { Icon } from "@design-system/icon";
 import { Typography } from "@design-system/typography";
 import { forwardRef, type HTMLAttributes } from "react";
 
@@ -20,6 +21,7 @@ type DialogBaseProps = HTMLAttributes<HTMLDivElement> & {
   onPrimaryAction?: () => void;
   onSecondaryAction?: () => void;
   onBackdropClick?: () => void;
+  onCloseButtonClick?: () => void;
 };
 
 type DialogWithBody = DialogBaseProps & {
@@ -79,6 +81,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
     onPrimaryAction,
     onSecondaryAction,
     onBackdropClick,
+    onCloseButtonClick,
     body,
     statusText,
     statusTone,
@@ -123,9 +126,14 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
           <Typography as="h3" category="Heading" size="XS" className="font-semibold">
             {title}
           </Typography>
-          <Typography as="span" category="Body" size="M" className="text-text-on-muted" aria-hidden>
-            x
-          </Typography>
+          <button
+            type="button"
+            aria-label="Close dialog"
+            className="inline-flex size-8 items-center justify-center rounded-md text-text-on-muted transition-colors hover:bg-bg-accent hover:text-text-on-accent"
+            onClick={onCloseButtonClick}
+          >
+            <Icon name="x" size="sm" variant="clear" />
+          </button>
         </div>
 
         <div

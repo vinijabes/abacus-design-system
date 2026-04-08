@@ -25,10 +25,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const horizontalItems = [
+  { id: "overview", label: "Overview", panel: "Tab content area" },
+  { id: "analytics", label: "Analytics", panel: "Tab content area" },
+  { id: "settings", label: "Settings", panel: "Tab content area" },
+];
+
+const verticalItems = [
+  { id: "profile", label: "Profile", panel: "Vertical tab content area" },
+  { id: "account", label: "Account", panel: "Vertical tab content area" },
+  { id: "security", label: "Security", panel: "Vertical tab content area" },
+];
+
 export const Playground: Story = {
   args: {
     variant: "default",
     state: "default",
+    items: horizontalItems,
   },
 };
 
@@ -36,6 +49,7 @@ export const Default: Story = {
   args: {
     variant: "default",
     state: "default",
+    items: horizontalItems,
   },
 };
 
@@ -43,6 +57,7 @@ export const DefaultDisabled: Story = {
   args: {
     variant: "default",
     state: "disabled",
+    items: horizontalItems,
   },
 };
 
@@ -50,6 +65,7 @@ export const Pill: Story = {
   args: {
     variant: "pill",
     state: "default",
+    items: horizontalItems,
   },
 };
 
@@ -57,6 +73,7 @@ export const PillDisabled: Story = {
   args: {
     variant: "pill",
     state: "disabled",
+    items: horizontalItems,
   },
 };
 
@@ -64,6 +81,7 @@ export const Boxed: Story = {
   args: {
     variant: "boxed",
     state: "default",
+    items: horizontalItems,
   },
 };
 
@@ -71,6 +89,7 @@ export const BoxedDisabled: Story = {
   args: {
     variant: "boxed",
     state: "disabled",
+    items: horizontalItems,
   },
 };
 
@@ -132,6 +151,7 @@ export const Vertical: Story = {
   args: {
     variant: "vertical",
     state: "default",
+    items: verticalItems,
   },
 };
 
@@ -139,6 +159,7 @@ export const VerticalDisabled: Story = {
   args: {
     variant: "vertical",
     state: "disabled",
+    items: verticalItems,
   },
 };
 
@@ -146,6 +167,7 @@ export const Compact: Story = {
   args: {
     variant: "compact",
     state: "default",
+    items: horizontalItems,
   },
 };
 
@@ -153,6 +175,7 @@ export const CompactDisabled: Story = {
   args: {
     variant: "compact",
     state: "disabled",
+    items: horizontalItems,
   },
 };
 

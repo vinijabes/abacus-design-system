@@ -35,6 +35,7 @@ const meta = {
     onPrimaryAction: fn(),
     onSecondaryAction: fn(),
     onBackdropClick: fn(),
+    onCloseButtonClick: fn(),
   },
 } satisfies Meta<typeof Dialog>;
 
@@ -56,6 +57,10 @@ function InteractiveDialog(args: ComponentProps<typeof Dialog>) {
         open={open}
         onBackdropClick={() => {
           args.onBackdropClick?.();
+          setOpen(false);
+        }}
+        onCloseButtonClick={() => {
+          args.onCloseButtonClick?.();
           setOpen(false);
         }}
         onPrimaryAction={() => {
@@ -183,6 +188,10 @@ export const BodyOnlyOverlay: Story = {
             open={open}
             onBackdropClick={() => {
               args.onBackdropClick?.();
+              setOpen(false);
+            }}
+            onCloseButtonClick={() => {
+              args.onCloseButtonClick?.();
               setOpen(false);
             }}
             onPrimaryAction={() => {

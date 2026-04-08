@@ -31,18 +31,6 @@ export type TabsProps = HTMLAttributes<HTMLDivElement> & {
   defaultActiveId?: string;
 };
 
-const defaultHorizontalItems: TabsItem[] = [
-  { id: "overview", label: "Overview", panel: "Tab content area" },
-  { id: "analytics", label: "Analytics", panel: "Tab content area" },
-  { id: "settings", label: "Settings", panel: "Tab content area" },
-];
-
-const defaultVerticalItems: TabsItem[] = [
-  { id: "profile", label: "Profile", panel: "Vertical tab content area" },
-  { id: "account", label: "Account", panel: "Vertical tab content area" },
-  { id: "security", label: "Security", panel: "Vertical tab content area" },
-];
-
 function mergeClassNames(...parts: (string | undefined)[]): string {
   return parts.filter(Boolean).join(" ").trim();
 }
@@ -62,9 +50,7 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   },
   ref,
 ) {
-  const resolvedItems =
-    items ??
-    (variant === "vertical" ? defaultVerticalItems : defaultHorizontalItems);
+  const resolvedItems = items ?? [];
   const initialActive = defaultActiveId ?? resolvedItems[0]?.id ?? "";
   const [activeId, setActiveId] = useState(initialActive);
   const isDisabled = state === "disabled";
