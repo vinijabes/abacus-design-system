@@ -9,7 +9,9 @@
   --primitive-color-neutral-200: #E5E5E5;
   --primitive-color-neutral-500: #737373;
   --primitive-color-neutral-950: #0A0A0A;
+  --primitive-color-zinc-100: #F4F4F5;
   --primitive-color-zinc-300: #D4D4D8;
+  --primitive-color-zinc-400: #A1A1AA;
   --primitive-color-base-white: #FFFFFF;
   --primitive-color-base-black: #0A0A0A;
   --primitive-color-sky-50: #F0F9FF;
@@ -32,11 +34,19 @@
   --primitive-color-emerald-500: #10B981;
   --primitive-color-amber-500-80: rgb(245 158 11 / 0.800000011920929);
   --primitive-color-amber-500: #F59E0B;
+  --primitive-color-red-50: #FEF2F2;
   --primitive-color-red-500-50: rgb(239 68 68 / 0.5);
   --primitive-color-red-500-80: rgb(239 68 68 / 0.800000011920929);
   --primitive-color-red-500: #EF4444;
+  --primitive-color-red-700: #B91C1C;
+  --primitive-color-blue-50: #EFF6FF;
   --primitive-color-blue-500-80: rgb(59 130 246 / 0.800000011920929);
   --primitive-color-blue-500: #3B82F6;
+  --primitive-color-blue-700: #1D4ED8;
+  --primitive-color-green-50: #F0FDF4;
+  --primitive-color-green-700: #15803D;
+  --primitive-color-yellow-50: #FEFCE8;
+  --primitive-color-yellow-700: #A16207;
   --primitive-spacing: 4px;
   --primitive-radius-sm: 4px;
   --primitive-radius-md: 6px;
@@ -66,8 +76,6 @@
   --radius-lg: var(--primitive-radius-lg);
   --radius-xl: var(--primitive-radius-xl);
   --radius: var(--primitive-radius-sm);
-  /* Sans: Inter matches Figma typography; load face in app CSS (e.g. Storybook styles.css). */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   /* Font sizes: Tailwind v4 uses --text-* and --text-*--line-height */
   --text-xs: var(--primitive-font-size-xs);
   --text-xs--line-height: var(--primitive-line-height-xs);
@@ -92,7 +100,9 @@
   --color-neutral-200: var(--primitive-color-neutral-200);
   --color-neutral-500: var(--primitive-color-neutral-500);
   --color-neutral-950: var(--primitive-color-neutral-950);
+  --color-zinc-100: var(--primitive-color-zinc-100);
   --color-zinc-300: var(--primitive-color-zinc-300);
+  --color-zinc-400: var(--primitive-color-zinc-400);
   --color-base-white: var(--primitive-color-base-white);
   --color-base-black: var(--primitive-color-base-black);
   --color-sky-50: var(--primitive-color-sky-50);
@@ -115,14 +125,32 @@
   --color-emerald-500: var(--primitive-color-emerald-500);
   --color-amber-500-80: var(--primitive-color-amber-500-80);
   --color-amber-500: var(--primitive-color-amber-500);
+  --color-red-50: var(--primitive-color-red-50);
   --color-red-500-50: var(--primitive-color-red-500-50);
   --color-red-500-80: var(--primitive-color-red-500-80);
   --color-red-500: var(--primitive-color-red-500);
+  --color-red-700: var(--primitive-color-red-700);
+  --color-blue-50: var(--primitive-color-blue-50);
   --color-blue-500-80: var(--primitive-color-blue-500-80);
   --color-blue-500: var(--primitive-color-blue-500);
+  --color-blue-700: var(--primitive-color-blue-700);
+  --color-green-50: var(--primitive-color-green-50);
+  --color-green-700: var(--primitive-color-green-700);
+  --color-yellow-50: var(--primitive-color-yellow-50);
+  --color-yellow-700: var(--primitive-color-yellow-700);
   --color-brand: var(--primitive-color-brand-500);
 
   /* Semantic colors (paths → keys via semanticPathToThemeKey) */
+  --color-alert-bg-error: var(--primitive-color-red-50);
+  --color-alert-bg-info: var(--primitive-color-blue-50);
+  --color-alert-bg-neutral: var(--primitive-color-zinc-100);
+  --color-alert-bg-success: var(--primitive-color-green-50);
+  --color-alert-bg-warning: var(--primitive-color-yellow-50);
+  --color-alert-foreground-error: var(--primitive-color-red-700);
+  --color-alert-foreground-info: var(--primitive-color-blue-700);
+  --color-alert-foreground-neutral: var(--primitive-color-neutral-950);
+  --color-alert-foreground-success: var(--primitive-color-green-700);
+  --color-alert-foreground-warning: var(--primitive-color-yellow-700);
   --color-bg-accent: var(--primitive-color-sky-50);
   --color-bg-background: var(--primitive-color-neutral-50);
   --color-bg-muted: var(--primitive-color-neutral-100);
