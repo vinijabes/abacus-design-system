@@ -10,9 +10,8 @@ const meta = {
   },
   tags: ["autodocs", "test"],
   argTypes: {
-    leading: {
-      control: "select",
-      options: ["none", "icon"],
+    leadingIcon: {
+      control: false,
     },
     state: {
       control: "select",
@@ -28,17 +27,16 @@ export const Playground: Story = {
   args: {
     label: "Amount",
     placeholder: "0.00",
-    leading: "none",
     state: "default",
   },
 };
 
 export const FieldOnly: Story = {
   render: () => (
-    <InputContainer leading="icon" state="default">
+    <InputContainer hasLeadingIcon state="default">
       <Icon
         name="search"
-        size="sm"
+        size="xl"
         variant="clear"
         className="text-zinc-400"
         aria-hidden
@@ -58,30 +56,33 @@ export const DesignStates: Story = {
         label="Amount"
         placeholder="0.00"
         state="default"
-        leading="none"
       />
       <Input
         label="Amount"
         placeholder="0.00"
         state="default"
-        leading="icon"
+        leadingIcon={<Icon name="search" />}
       />
 
       <Input
         label="Amount"
         placeholder="0.00"
         state="disabled"
-        leading="none"
       />
       <Input
         label="Amount"
         placeholder="0.00"
         state="disabled"
-        leading="icon"
+        leadingIcon={<Icon name="search" />}
       />
 
-      <Input label="Amount" value="0.00" state="readOnly" leading="none" />
-      <Input label="Amount" value="0.00" state="readOnly" leading="icon" />
+      <Input label="Amount" value="0.00" state="readOnly" />
+      <Input
+        label="Amount"
+        value="0.00"
+        state="readOnly"
+        leadingIcon={<Icon name="search" />}
+      />
     </div>
   ),
 };

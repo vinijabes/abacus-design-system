@@ -1,23 +1,26 @@
 import {
+  cloneElement,
   forwardRef,
+  isValidElement,
   useId,
   type HTMLAttributes,
   type InputHTMLAttributes,
+  type ReactElement,
 } from "react";
-import { Icon } from "@design-system/icon";
+import type { IconProps } from "@design-system/icon";
 import { Typography } from "@design-system/typography";
 
-export type InputLeading = "none" | "icon";
+export type InputLeading = ReactElement<IconProps>;
 export type InputState = "default" | "disabled" | "readOnly";
 
 export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
   label?: string;
-  leading?: InputLeading;
+  leadingIcon?: InputLeading;
   state?: InputState;
 };
 
 export type InputContainerProps = HTMLAttributes<HTMLDivElement> & {
-  leading?: InputLeading;
+  hasLeadingIcon?: boolean;
   state?: InputState;
 };
 
@@ -27,7 +30,7 @@ function mergeClassNames(...parts: (string | undefined)[]): string {
 
 export const InputContainer = forwardRef<HTMLDivElement, InputContainerProps>(
   function InputContainer(
-    { leading = "none", state = "default", className, children, ...rest },
+    { hasLeadingIcon = false, state = "default", className, children, ...rest },
     ref,
   ) {
     const isDisabled = state === "disabled";
@@ -37,7 +40,7 @@ export const InputContainer = forwardRef<HTMLDivElement, InputContainerProps>(
         ref={ref}
         className={mergeClassNames(
           "flex h-9 w-80 items-center overflow-hidden rounded-md border border-solid border-border-input bg-input-background px-3 py-1",
-          leading === "icon" ? "gap-2" : undefined,
+          hasLeadingIcon ? "gap-2" : undefined,
           isDisabled ? "opacity-50" : undefined,
           className,
         )}
@@ -51,10 +54,23 @@ export const InputContainer = forwardRef<HTMLDivElement, InputContainerProps>(
 
 InputContainer.displayName = "InputContainer";
 
+function normalizedLeadingIcon(icon: InputLeading): ReactElement {
+  if (!isValidElement(icon)) {
+    return icon;
+  }
+
+  return cloneElement(icon, {
+    size: "sm",
+    variant: "clear",
+    className: "text-zinc-400",
+    "aria-hidden": true,
+  });
+}
+
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
     label = "Amount",
-    leading = "none",
+    leadingIcon,
     state = "default",
     className,
     readOnly,
@@ -83,16 +99,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       >
         {label}
       </Typography>
-      <InputContainer leading={leading} state={isDisabled ? "disabled" : state}>
-        {leading === "icon" ? (
-          <Icon
-            name="search"
-            size="sm"
-            variant="clear"
-            className="text-zinc-400"
-            aria-hidden
-          />
-        ) : null}
+      <InputContainer
+        hasLeadingIcon={Boolean(leadingIcon)}
+        state={isDisabled ? "disabled" : state}
+      >
+        {leadingIcon ? normalizedLeadingIcon(leadingIcon) : null}
 
         <input
           id={inputId}
