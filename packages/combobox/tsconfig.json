@@ -1,0 +1,9 @@
+{
+  "extends": "@design-system/tsconfig/react-library.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "noEmit": true
+  },
+  "include": ["src"],
+  "exclude": ["**/*.stories.tsx"]
+}
