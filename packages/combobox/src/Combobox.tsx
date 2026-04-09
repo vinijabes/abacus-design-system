@@ -60,13 +60,16 @@ export function Combobox({
           ? openPlaceholder
           : placeholder;
 
+  const isForcedOpen = state === "open";
+  const openState = isForcedOpen ? true : open;
+
   return (
     <Select.Root
       value={value}
       onValueChange={onValueChange}
-      open={state === "open" ? true : undefined}
+      open={openState}
       onOpenChange={(nextOpen) => {
-        if (state !== "open") {
+        if (!isForcedOpen) {
           setOpen(nextOpen);
         }
       }}
@@ -141,20 +144,18 @@ export function Combobox({
         <Select.Content
           position="popper"
           sideOffset={8}
-          className="z-50 w-[var(--radix-select-trigger-width)]"
+          className="z-[1000] w-[var(--radix-select-trigger-width)]"
         >
           <Select.Viewport asChild>
             <ComboboxMenu>
               {options.map((option) => (
                 <Select.Item
+                  asChild
                   key={option.value}
                   value={option.value}
                   disabled={option.disabled}
-                  className="outline-none"
                 >
-                  <Select.ItemText asChild>
-                    <ComboboxMenuItem label={option.label} />
-                  </Select.ItemText>
+                  <ComboboxMenuItem label={option.label} />
                 </Select.Item>
               ))}
             </ComboboxMenu>

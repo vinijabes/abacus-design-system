@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useArgs } from "storybook/preview-api";
 import {
   Combobox,
   ComboboxMenu,
@@ -25,6 +26,8 @@ const states: ComboboxState[] = [
   "loading",
 ];
 
+const triggerStates = states.filter((state) => state !== "open");
+
 const meta = {
   title: "Combobox",
   component: Combobox,
@@ -48,19 +51,38 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
+  render: function Render(args) {
+    const [{ value }, updateArgs] = useArgs();
+
+    return (
+      <Combobox
+        {...args}
+        value={value}
+        onValueChange={(nextValue) => {
+          updateArgs({ value: nextValue });
+        }}
+      />
+    );
+  },
   args: {
     size: "sm",
     placeholder: "Select option",
     options: demoOptions,
+    value: undefined,
   },
 };
 
 export const TriggerStates: Story = {
+  parameters: {
+    docs: {
+      disable: true,
+    },
+  },
   render: () => (
     <div className="flex flex-col gap-4">
       <div className="flex gap-4">
         <div className="flex flex-col gap-2">
-          {states.map((state) => (
+          {triggerStates.map((state) => (
             <Combobox
               key={`sm-${state}`}
               size="sm"
@@ -71,7 +93,7 @@ export const TriggerStates: Story = {
           ))}
         </div>
         <div className="flex flex-col gap-2">
-          {states.map((state) => (
+          {triggerStates.map((state) => (
             <Combobox
               key={`md-${state}`}
               size="md"
@@ -82,7 +104,7 @@ export const TriggerStates: Story = {
           ))}
         </div>
         <div className="flex flex-col gap-2">
-          {states.map((state) => (
+          {triggerStates.map((state) => (
             <Combobox
               key={`lg-${state}`}
               size="lg"
