@@ -25,7 +25,9 @@ export const ComboboxMenuItem = forwardRef<HTMLDivElement, ComboboxMenuItemProps
       <div
         ref={ref}
         className={mergeClassNames(
-          "flex h-[33px] w-full items-center px-3 py-2",
+          "flex h-[33px] w-full cursor-default select-none items-center rounded-sm px-3 py-2",
+          "data-[highlighted]:bg-bg-muted data-[state=checked]:bg-bg-accent data-[disabled]:opacity-90",
+          "[&[data-disabled]>p]:text-text-on-muted [&[data-state=checked]>p]:text-text-on-primary-foreground",
           state === "disabled" ? "opacity-90" : undefined,
           containerStateClasses,
           className,
