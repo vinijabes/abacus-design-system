@@ -17,6 +17,7 @@
     "@design-system/button": "workspace:*",
     "@design-system/card": "workspace:*",
     "@design-system/icon": "workspace:*",
+    "@design-system/input": "workspace:*",
     "@design-system/tailwind-config": "workspace:*",
     "@design-system/typography": "workspace:*"
   },
