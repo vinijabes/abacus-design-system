@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input } from "./Input";
+import { Icon } from "@design-system/icon";
+import { Input, InputContainer } from "./Input";
 
 const meta = {
   title: "Input",
@@ -32,14 +33,52 @@ export const Playground: Story = {
   },
 };
 
+export const FieldOnly: Story = {
+  render: () => (
+    <InputContainer leading="icon" state="default">
+      <Icon
+        name="search"
+        size="sm"
+        variant="clear"
+        className="text-zinc-400"
+        aria-hidden
+      />
+      <input
+        placeholder="0.00"
+        className="w-full min-w-0 border-0 bg-transparent p-0 text-sm leading-normal text-text-on-background outline-none placeholder:text-text-input-placeholder"
+      />
+    </InputContainer>
+  ),
+};
+
 export const DesignStates: Story = {
   render: () => (
     <div className="grid grid-cols-2 gap-x-10 gap-y-20">
-      <Input label="Amount" placeholder="0.00" state="default" leading="none" />
-      <Input label="Amount" placeholder="0.00" state="default" leading="icon" />
+      <Input
+        label="Amount"
+        placeholder="0.00"
+        state="default"
+        leading="none"
+      />
+      <Input
+        label="Amount"
+        placeholder="0.00"
+        state="default"
+        leading="icon"
+      />
 
-      <Input label="Amount" placeholder="0.00" state="disabled" leading="none" />
-      <Input label="Amount" placeholder="0.00" state="disabled" leading="icon" />
+      <Input
+        label="Amount"
+        placeholder="0.00"
+        state="disabled"
+        leading="none"
+      />
+      <Input
+        label="Amount"
+        placeholder="0.00"
+        state="disabled"
+        leading="icon"
+      />
 
       <Input label="Amount" value="0.00" state="readOnly" leading="none" />
       <Input label="Amount" value="0.00" state="readOnly" leading="icon" />

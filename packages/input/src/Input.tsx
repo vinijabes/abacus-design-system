@@ -1,4 +1,9 @@
-import { forwardRef, useId, type InputHTMLAttributes } from "react";
+import {
+  forwardRef,
+  useId,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
+} from "react";
 import { Icon } from "@design-system/icon";
 import { Typography } from "@design-system/typography";
 
@@ -11,9 +16,40 @@ export type InputProps = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
   state?: InputState;
 };
 
+export type InputContainerProps = HTMLAttributes<HTMLDivElement> & {
+  leading?: InputLeading;
+  state?: InputState;
+};
+
 function mergeClassNames(...parts: (string | undefined)[]): string {
   return parts.filter(Boolean).join(" ").trim();
 }
+
+export const InputContainer = forwardRef<HTMLDivElement, InputContainerProps>(
+  function InputContainer(
+    { leading = "none", state = "default", className, children, ...rest },
+    ref,
+  ) {
+    const isDisabled = state === "disabled";
+
+    return (
+      <div
+        ref={ref}
+        className={mergeClassNames(
+          "flex h-9 w-80 items-center overflow-hidden rounded-md border border-solid border-border-input bg-input-background px-3 py-1",
+          leading === "icon" ? "gap-2" : undefined,
+          isDisabled ? "opacity-50" : undefined,
+          className,
+        )}
+        {...rest}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+
+InputContainer.displayName = "InputContainer";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   {
@@ -47,14 +83,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       >
         {label}
       </Typography>
-
-      <div
-        className={mergeClassNames(
-          "flex h-9 w-80 items-center overflow-hidden rounded-md border border-solid border-border-input bg-input-background px-3 py-1",
-          leading === "icon" ? "gap-2" : undefined,
-          isDisabled ? "opacity-50" : undefined,
-        )}
-      >
+      <InputContainer leading={leading} state={isDisabled ? "disabled" : state}>
         {leading === "icon" ? (
           <Icon
             name="search"
@@ -80,7 +109,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           placeholder={placeholder}
           {...rest}
         />
-      </div>
+      </InputContainer>
     </div>
   );
 });
