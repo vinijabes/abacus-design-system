@@ -195,3 +195,22 @@
   --font-weight-text-label-medium: var(--primitive-font-weight-medium);
 }
 
+/* Progress bar: diagonal stripe motion (variant striped / indeterminate emphasis) */
+@keyframes ds-progress-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1rem 0;
+  }
+}
+
+@keyframes ds-progress-indeterminate {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(350%);
+  }
+}
+
