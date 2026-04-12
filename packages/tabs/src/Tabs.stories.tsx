@@ -13,7 +13,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "pill", "boxed", "vertical", "compact"],
+      options: ["default", "pill", "boxed", "vertical", "compact", "segmented"],
     },
     state: {
       control: "select",
@@ -37,6 +37,63 @@ const verticalItems = [
   { id: "security", label: "Security", panel: "Vertical tab content area" },
 ];
 
+const horizontalItemsWithIcons = [
+  {
+    id: "overview",
+    label: "Overview",
+    panel: "Tab content area",
+    icon: <Icon name="file-text" variant="clear" />,
+  },
+  {
+    id: "analytics",
+    label: "Analytics",
+    panel: "Tab content area",
+    icon: <Icon name="chart-column" variant="clear" />,
+  },
+  {
+    id: "settings",
+    label: "Settings",
+    panel: "Tab content area",
+    icon: <Icon name="settings-2" variant="clear" />,
+  },
+];
+
+const verticalItemsWithIcons = [
+  {
+    id: "profile",
+    label: "Profile",
+    panel: "Vertical tab content area",
+    icon: <Icon name="file-text" variant="clear" />,
+  },
+  {
+    id: "account",
+    label: "Account",
+    panel: "Vertical tab content area",
+    icon: <Icon name="chart-column" variant="clear" />,
+  },
+  {
+    id: "security",
+    label: "Security",
+    panel: "Vertical tab content area",
+    icon: <Icon name="settings-2" variant="clear" />,
+  },
+];
+
+const segmentedItemsWithIcons = [
+  {
+    id: "this",
+    label: "This month",
+    panel: "Surface: this month",
+    icon: <Icon name="calendar" variant="clear" />,
+  },
+  {
+    id: "last",
+    label: "Last month",
+    panel: "Surface: last month",
+    icon: <Icon name="calendar-range" variant="clear" />,
+  },
+];
+
 export const Playground: Story = {
   args: {
     variant: "default",
@@ -46,6 +103,7 @@ export const Playground: Story = {
 };
 
 export const Default: Story = {
+  name: "Variants / Default",
   args: {
     variant: "default",
     state: "default",
@@ -54,6 +112,7 @@ export const Default: Story = {
 };
 
 export const DefaultDisabled: Story = {
+  name: "Variants / Default · disabled",
   args: {
     variant: "default",
     state: "disabled",
@@ -62,6 +121,7 @@ export const DefaultDisabled: Story = {
 };
 
 export const Pill: Story = {
+  name: "Variants / Pill",
   args: {
     variant: "pill",
     state: "default",
@@ -70,6 +130,7 @@ export const Pill: Story = {
 };
 
 export const PillDisabled: Story = {
+  name: "Variants / Pill · disabled",
   args: {
     variant: "pill",
     state: "disabled",
@@ -78,6 +139,7 @@ export const PillDisabled: Story = {
 };
 
 export const Boxed: Story = {
+  name: "Variants / Boxed",
   args: {
     variant: "boxed",
     state: "default",
@@ -86,6 +148,7 @@ export const Boxed: Story = {
 };
 
 export const BoxedDisabled: Story = {
+  name: "Variants / Boxed · disabled",
   args: {
     variant: "boxed",
     state: "disabled",
@@ -94,60 +157,72 @@ export const BoxedDisabled: Story = {
 };
 
 export const DefaultWithIconItems: Story = {
+  name: "Variants / Default with icons",
   args: {
     variant: "default",
     state: "default",
-    items: [
-      {
-        id: "overview",
-        label: "Overview",
-        panel: "Tab content area",
-        icon: <Icon name="file-text" variant="clear" />,
-      },
-      {
-        id: "analytics",
-        label: "Analytics",
-        panel: "Tab content area",
-        icon: <Icon name="chart-column" variant="clear" />,
-      },
-      {
-        id: "settings",
-        label: "Settings",
-        panel: "Tab content area",
-        icon: <Icon name="settings-2" variant="clear" />,
-      },
-    ],
+    items: horizontalItemsWithIcons,
   },
 };
 
 export const DefaultWithIconItemsDisabled: Story = {
+  name: "Variants / Default with icons · disabled",
   args: {
     variant: "default",
     state: "disabled",
-    items: [
-      {
-        id: "overview",
-        label: "Overview",
-        panel: "Tab content area",
-        icon: <Icon name="file-text" variant="clear" />,
-      },
-      {
-        id: "analytics",
-        label: "Analytics",
-        panel: "Tab content area",
-        icon: <Icon name="chart-column" variant="clear" />,
-      },
-      {
-        id: "settings",
-        label: "Settings",
-        panel: "Tab content area",
-        icon: <Icon name="settings-2" variant="clear" />,
-      },
-    ],
+    items: horizontalItemsWithIcons,
+  },
+};
+
+export const PillWithIconItems: Story = {
+  name: "Variants / Pill with icons",
+  args: {
+    variant: "pill",
+    state: "default",
+    items: horizontalItemsWithIcons,
+  },
+};
+
+export const BoxedWithIconItems: Story = {
+  name: "Variants / Boxed with icons",
+  args: {
+    variant: "boxed",
+    state: "default",
+    items: horizontalItemsWithIcons,
+  },
+};
+
+export const CompactWithIconItems: Story = {
+  name: "Variants / Compact with icons",
+  args: {
+    variant: "compact",
+    state: "default",
+    items: horizontalItemsWithIcons,
+  },
+};
+
+export const VerticalWithIconItems: Story = {
+  name: "Variants / Vertical with icons",
+  args: {
+    variant: "vertical",
+    state: "default",
+    items: verticalItemsWithIcons,
+  },
+};
+
+export const SegmentedWithIconItems: Story = {
+  name: "Variants / Segmented with icons",
+  args: {
+    variant: "segmented",
+    state: "default",
+    items: segmentedItemsWithIcons,
+    defaultActiveId: "this",
+    "aria-label": "Reporting period",
   },
 };
 
 export const Vertical: Story = {
+  name: "Variants / Vertical",
   args: {
     variant: "vertical",
     state: "default",
@@ -156,6 +231,7 @@ export const Vertical: Story = {
 };
 
 export const VerticalDisabled: Story = {
+  name: "Variants / Vertical · disabled",
   args: {
     variant: "vertical",
     state: "disabled",
@@ -164,6 +240,7 @@ export const VerticalDisabled: Story = {
 };
 
 export const Compact: Story = {
+  name: "Variants / Compact",
   args: {
     variant: "compact",
     state: "default",
@@ -172,6 +249,7 @@ export const Compact: Story = {
 };
 
 export const CompactDisabled: Story = {
+  name: "Variants / Compact · disabled",
   args: {
     variant: "compact",
     state: "disabled",
@@ -180,6 +258,7 @@ export const CompactDisabled: Story = {
 };
 
 export const IndividualTabDisabled: Story = {
+  name: "Variants / Individual tab disabled",
   args: {
     variant: "default",
     state: "default",
@@ -188,6 +267,47 @@ export const IndividualTabDisabled: Story = {
       { id: "analytics", label: "Analytics", panel: "Tab content area", disabled: true },
       { id: "settings", label: "Settings", panel: "Tab content area" },
     ],
+  },
+};
+
+const segmentedPanelItems = [
+  { id: "this", label: "This month", panel: "Surface: this month" },
+  { id: "last", label: "Last month", panel: "Surface: last month" },
+];
+
+/** `Tabs` always uses `SegmentedControl` as the tab controller; this is the compact `segmented` variant. */
+export const Segmented: Story = {
+  name: "Variants / Segmented",
+  args: {
+    variant: "segmented",
+    state: "default",
+    items: segmentedPanelItems,
+    defaultActiveId: "this",
+    "aria-label": "Reporting period",
+  },
+};
+
+export const SegmentedDisabled: Story = {
+  name: "Variants / Segmented · disabled",
+  args: {
+    variant: "segmented",
+    state: "disabled",
+    items: segmentedPanelItems,
+    "aria-label": "Reporting period",
+  },
+};
+
+export const SegmentedThreePanels: Story = {
+  name: "Variants / Segmented · three panels",
+  args: {
+    variant: "segmented",
+    state: "default",
+    items: [
+      { id: "overview", label: "Overview", panel: "Overview surface" },
+      { id: "analytics", label: "Analytics", panel: "Analytics surface" },
+      { id: "settings", label: "Settings", panel: "Settings surface" },
+    ],
+    "aria-label": "Workspace section",
   },
 };
 

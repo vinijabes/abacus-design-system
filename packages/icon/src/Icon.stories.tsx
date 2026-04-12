@@ -27,6 +27,8 @@ const meta = {
         "warning",
         "destructive",
         "info",
+        "muted",
+        "foreground",
       ],
     },
   },
@@ -68,6 +70,8 @@ export const SemanticColorsSolid: Story = {
       <Icon name="alert-triangle" variant="solid" color="warning" size="md" />
       <Icon name="x" variant="solid" color="destructive" size="md" />
       <Icon name="info" variant="solid" color="info" size="md" />
+      <Icon name="circle-dashed" variant="solid" color="muted" size="md" />
+      <Icon name="type" variant="solid" color="foreground" size="md" />
     </div>
   ),
 };
