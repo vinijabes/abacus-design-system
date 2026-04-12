@@ -3,6 +3,7 @@ import { expect, within } from "storybook/test";
 import { Icon } from "@design-system/icon";
 import { Typography } from "@design-system/typography";
 import { Button } from "./Button";
+import { FloatingActionButton } from "./FloatingActionButton";
 
 const meta = {
   title: "Button",
@@ -21,6 +22,7 @@ const meta = {
         "ghost",
         "destructive",
         "link",
+        "fab",
       ],
     },
     size: {
@@ -111,6 +113,60 @@ export const IconButton: Story = {
       />
     ),
     "aria-label": "Add",
+  },
+};
+
+const fabPlusIcon = (
+  <Icon
+    name="plus"
+    size="md"
+    variant="clear"
+    className="text-text-on-primary"
+    aria-hidden
+  />
+);
+
+/** Matches [Abacus App Shell FAB](https://www.figma.com/design/y70O9MsPCJeRCOJS8YGpCp/Abacus?node-id=107-177) — 56×56, primary, `shadow-lg`. */
+export const FabDefault: Story = {
+  name: "FAB / Default",
+  render: () => (
+    <FloatingActionButton type="button" aria-label="Create">
+      {fabPlusIcon}
+    </FloatingActionButton>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      canvas.getByRole("button", { name: "Create" }),
+    ).toBeVisible();
+  },
+};
+
+export const FabDisabled: Story = {
+  name: "FAB / Disabled",
+  render: () => (
+    <FloatingActionButton type="button" aria-label="Create" disabled>
+      {fabPlusIcon}
+    </FloatingActionButton>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(canvas.getByRole("button", { name: "Create" })).toBeDisabled();
+  },
+};
+
+export const FabWithPlus: Story = {
+  name: "FAB / With plus",
+  render: () => (
+    <Button type="button" variant="fab" aria-label="Create">
+      {fabPlusIcon}
+    </Button>
+  ),
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    await expect(
+      canvas.getByRole("button", { name: "Create" }),
+    ).toBeVisible();
   },
 };
 
