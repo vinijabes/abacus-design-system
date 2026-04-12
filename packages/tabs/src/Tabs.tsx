@@ -1,11 +1,16 @@
 import { SegmentedControl, type SegmentedControlVariant } from "@design-system/segmented-control";
 import {
+  Children,
+  Fragment,
   forwardRef,
+  isValidElement,
   useMemo,
   useState,
   type HTMLAttributes,
   type ReactElement,
+  type ReactNode,
 } from "react";
+import { Tab, type TabItemSlotProps } from "./Tab";
 
 export type TabsVariant =
   | "default"
@@ -20,7 +25,7 @@ export type TabsState = "default" | "disabled";
 export type TabsItem = {
   id: string;
   label: string;
-  panel?: string;
+  panel?: ReactNode;
   disabled?: boolean;
   icon?: ReactElement;
 };
@@ -30,6 +35,7 @@ export type TabsProps = HTMLAttributes<HTMLDivElement> & {
   state?: TabsState;
   items?: TabsItem[];
   defaultActiveId?: string;
+  children?: ReactNode;
 };
 
 function mergeClassNames(...parts: (string | undefined)[]): string {
@@ -43,11 +49,44 @@ function tabsVariantToControlVariant(variant: TabsVariant): SegmentedControlVari
   return variant;
 }
 
+function flattenTabItemElements(
+  nodes: ReactNode,
+  Item: typeof Tab.Item,
+): ReactElement<TabItemSlotProps>[] {
+  const out: ReactElement<TabItemSlotProps>[] = [];
+  Children.forEach(nodes, (node) => {
+    if (!isValidElement(node)) {
+      return;
+    }
+    if (node.type === Fragment) {
+      const { children: fragmentChildren } = node.props as { children?: ReactNode };
+      out.push(...flattenTabItemElements(fragmentChildren, Item));
+    } else if (node.type === Item) {
+      out.push(node as ReactElement<TabItemSlotProps>);
+    }
+  });
+  return out;
+}
+
+function itemsFromTabChildren(children: ReactNode | undefined): TabsItem[] {
+  if (children == null) {
+    return [];
+  }
+  return flattenTabItemElements(children, Tab.Item).map((el) => ({
+    id: el.props.id,
+    label: el.props.label,
+    disabled: el.props.disabled,
+    icon: el.props.icon,
+    panel: el.props.children ?? "Tab content area",
+  }));
+}
+
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   {
     variant = "default",
     state = "default",
     items,
+    children,
     defaultActiveId,
     className,
     "aria-label": ariaLabel,
@@ -56,7 +95,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   },
   ref,
 ) {
-  const resolvedItems = items ?? [];
+  const fromChildren = itemsFromTabChildren(children);
+  const resolvedItems = fromChildren.length > 0 ? fromChildren : (items ?? []);
   const initialActive = defaultActiveId ?? resolvedItems[0]?.id ?? "";
   const [activeId, setActiveId] = useState(initialActive);
   const isDisabled = state === "disabled";
