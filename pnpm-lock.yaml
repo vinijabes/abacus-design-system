@@ -27,7 +27,11 @@ catalogs:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      lucide-static:
+        specifier: ^1.8.0
+        version: 1.8.0
 
   apps/storybook:
     dependencies:
@@ -49,6 +53,9 @@ importers:
       '@design-system/progress':
         specifier: workspace:*
         version: link:../../packages/progress
+      '@design-system/segmented-control':
+        specifier: workspace:*
+        version: link:../../packages/segmented-control
       '@design-system/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
@@ -390,7 +397,41 @@ importers:
         specifier: ^5.7.0
         version: 5.9.3
 
+  packages/segmented-control:
+    devDependencies:
+      '@design-system/icon':
+        specifier: workspace:*
+        version: link:../icon
+      '@design-system/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@storybook/react':
+        specifier: 'catalog:'
+        version: 10.3.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(storybook@10.3.4(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3)
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      storybook:
+        specifier: 'catalog:'
+        version: 10.3.4(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+
   packages/tabs:
+    dependencies:
+      '@design-system/segmented-control':
+        specifier: workspace:*
+        version: link:../segmented-control
     devDependencies:
       '@design-system/icon':
         specifier: workspace:*
@@ -1958,6 +1999,9 @@ packages:
     resolution: {integrity: sha512-82hOAu7y0dbVuFfmO4bYF1XEwYk/mEbM5E+b1jgci/udUBEE/R7LF5Ip0CCEmXe8AybRM8L+04eP+LGZeDvkiw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  lucide-static@1.8.0:
+    resolution: {integrity: sha512-eQJCJuDg3tyQrjP0PwD5eIA4ePd5CMdxkrfyqk3iUQA4VOtsJ0v5T6IBJ5UyR3SYHzUn8HOAEL+I+SLVnOJNIA==}
 
   lz-string@1.5.0:
     resolution: {integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==}
@@ -3691,6 +3735,8 @@ snapshots:
   lucide-react@0.562.0(react@19.2.4):
     dependencies:
       react: 19.2.4
+
+  lucide-static@1.8.0: {}
 
   lz-string@1.5.0: {}
 

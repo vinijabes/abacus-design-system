@@ -1,3 +1,4 @@
+import { SegmentedControl, type SegmentedControlVariant } from "@design-system/segmented-control";
 import {
   forwardRef,
   useMemo,
@@ -5,14 +6,14 @@ import {
   type HTMLAttributes,
   type ReactElement,
 } from "react";
-import { TabItem, type TabItemVariant } from "./TabItem";
 
 export type TabsVariant =
   | "default"
   | "pill"
   | "boxed"
   | "vertical"
-  | "compact";
+  | "compact"
+  | "segmented";
 
 export type TabsState = "default" | "disabled";
 
@@ -35,8 +36,11 @@ function mergeClassNames(...parts: (string | undefined)[]): string {
   return parts.filter(Boolean).join(" ").trim();
 }
 
-function toTabItemVariant(variant: TabsVariant): TabItemVariant {
-  return variant === "default" ? "underline" : variant;
+function tabsVariantToControlVariant(variant: TabsVariant): SegmentedControlVariant {
+  if (variant === "default") {
+    return "underline";
+  }
+  return variant;
 }
 
 export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
@@ -46,6 +50,8 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
     items,
     defaultActiveId,
     className,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     ...rest
   },
   ref,
@@ -55,8 +61,6 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
   const [activeId, setActiveId] = useState(initialActive);
   const isDisabled = state === "disabled";
   const isVertical = variant === "vertical";
-  const hasDefaultDivider = variant === "default";
-  const horizontalListGapClass = variant === "pill" ? "gap-0" : "gap-2";
 
   const activePanel = useMemo(() => {
     const active = resolvedItems.find((item) => item.id === activeId) ?? resolvedItems[0];
@@ -80,59 +84,29 @@ export const Tabs = forwardRef<HTMLDivElement, TabsProps>(function Tabs(
             : variant === "boxed"
               ? "flex flex-col items-start gap-0"
               : "flex flex-col items-start gap-3",
-          hasDefaultDivider ? "w-full" : undefined,
+          variant === "default" ? "w-full" : undefined,
         )}
       >
-        <div
-          role="tablist"
-          aria-disabled={isDisabled || undefined}
-          aria-orientation={isVertical ? "vertical" : "horizontal"}
+        <SegmentedControl
+          semantics="tabs"
+          variant={tabsVariantToControlVariant(variant)}
+          listUnderlineDivider={variant === "default"}
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledby}
           className={mergeClassNames(
-            isVertical
-              ? "flex flex-col items-start border-r border-solid border-border-color"
-              : mergeClassNames(
-                  "flex items-start",
-                  horizontalListGapClass,
-                  hasDefaultDivider
-                    ? "w-full border-b border-solid border-border-color"
-                    : undefined,
-                ),
+            "w-full",
+            variant === "segmented" ? "max-w-[360px]" : undefined,
           )}
-        >
-          {resolvedItems.map((item, itemIndex) => {
-            const isFirstItem = itemIndex === 0;
-            const isLastItem = itemIndex === resolvedItems.length - 1;
-            const isActive = item.id === activeId;
-            const isItemDisabled = isDisabled || item.disabled === true;
-            return (
-              <TabItem
-                key={item.id}
-                role="tab"
-                aria-selected={isActive}
-                aria-controls={`panel-${item.id}`}
-                id={`tab-${item.id}`}
-                label={item.label}
-                variant={toTabItemVariant(variant)}
-                icon={item.icon}
-                state={isItemDisabled ? "disabled" : isActive ? "active" : "default"}
-                className={
-                  variant === "pill"
-                    ? mergeClassNames(
-                        isFirstItem ? "rounded-l-md" : undefined,
-                        isLastItem ? "rounded-r-md" : undefined,
-                      )
-                    : undefined
-                }
-                onClick={() => {
-                  if (isItemDisabled) {
-                    return;
-                  }
-                  setActiveId(item.id);
-                }}
-              />
-            );
-          })}
-        </div>
+          disabled={isDisabled}
+          items={resolvedItems.map(({ id, label, disabled, icon }) => ({
+            id,
+            label,
+            disabled,
+            icon,
+          }))}
+          value={activeId}
+          onValueChange={setActiveId}
+        />
         <div
           id={`panel-${activeId}`}
           role="tabpanel"

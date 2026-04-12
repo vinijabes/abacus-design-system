@@ -90,15 +90,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
 
   return (
     <div className="flex flex-col items-start gap-2">
-      <Typography
-        as="label"
-        htmlFor={inputId}
-        category="Label"
-        size="M"
-        className="leading-[14px]"
-      >
-        {label}
-      </Typography>
+      <label htmlFor={inputId} className="w-full">
+        <Typography
+          as="span"
+          category="Label"
+          size="M"
+          className="block leading-[14px]"
+        >
+          {label}
+        </Typography>
+      </label>
       <InputContainer
         hasLeadingIcon={Boolean(leadingIcon)}
         state={isDisabled ? "disabled" : state}

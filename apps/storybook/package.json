@@ -19,6 +19,7 @@
     "@design-system/icon": "workspace:*",
     "@design-system/input": "workspace:*",
     "@design-system/progress": "workspace:*",
+    "@design-system/segmented-control": "workspace:*",
     "@design-system/tailwind-config": "workspace:*",
     "@design-system/typography": "workspace:*"
   },

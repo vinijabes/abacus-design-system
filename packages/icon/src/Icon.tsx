@@ -12,7 +12,9 @@ export type IconColor =
   | "success"
   | "warning"
   | "destructive"
-  | "info";
+  | "info"
+  | "muted"
+  | "foreground";
 
 const glyphPx: Record<IconSize, number> = {
   sm: 16,
@@ -41,6 +43,9 @@ const solidColor: Record<IconColor, string> = {
   warning: "bg-warning text-text-on-warning",
   destructive: "bg-destructive text-text-on-destructive",
   info: "bg-info text-text-on-info",
+  muted: "bg-border-color text-text-on-muted",
+  /** Matches Typography default ink (`text-text-on-background`). */
+  foreground: "bg-bg-muted text-text-on-background",
 };
 
 const outlineColor: Record<IconColor, string> = {
@@ -50,6 +55,9 @@ const outlineColor: Record<IconColor, string> = {
   warning: "border border-warning bg-transparent text-warning",
   destructive: "border border-destructive bg-transparent text-destructive",
   info: "border border-info bg-transparent text-info",
+  muted: "border border-border-color bg-transparent text-text-on-muted",
+  foreground:
+    "border border-border-color bg-transparent text-text-on-background",
 };
 
 const ghostColor: Record<IconColor, string> = {
@@ -62,6 +70,10 @@ const ghostColor: Record<IconColor, string> = {
   destructive:
     "bg-transparent text-destructive hover:bg-bg-accent hover:text-text-on-accent",
   info: "bg-transparent text-info hover:bg-bg-accent hover:text-text-on-accent",
+  muted:
+    "bg-transparent text-text-on-muted hover:bg-bg-accent hover:text-text-on-accent",
+  foreground:
+    "bg-transparent text-text-on-background hover:bg-bg-accent hover:text-text-on-accent",
 };
 
 const clearColor: Record<IconColor, string> = {
@@ -70,6 +82,8 @@ const clearColor: Record<IconColor, string> = {
   warning: "text-warning",
   destructive: "text-destructive",
   info: "text-info",
+  muted: "text-text-on-muted",
+  foreground: "text-text-on-background",
 };
 
 function mergeClassNames(...parts: (string | undefined)[]): string {
