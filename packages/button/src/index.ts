@@ -4,3 +4,7 @@ export {
   type ButtonSize,
   type ButtonVariant,
 } from "./Button";
+export {
+  FloatingActionButton,
+  type FloatingActionButtonProps,
+} from "./FloatingActionButton";
