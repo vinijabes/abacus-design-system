@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Icon } from "@design-system/icon";
+import { Tab } from "./Tab";
 import { Tabs } from "./Tabs";
 import { TabItem } from "./TabItem";
 
@@ -99,6 +100,27 @@ export const Playground: Story = {
     variant: "default",
     state: "default",
     items: horizontalItems,
+  },
+};
+
+export const CompoundItems: Story = {
+  name: "Composition / Tab.Item children",
+  render: (args) => (
+    <Tabs variant={args.variant} state={args.state} defaultActiveId={args.defaultActiveId}>
+      <Tab.Item id="overview" label="Overview">
+        Overview panel content.
+      </Tab.Item>
+      <Tab.Item id="analytics" label="Analytics">
+        Analytics panel content.
+      </Tab.Item>
+      <Tab.Item id="settings" label="Settings">
+        Settings panel content.
+      </Tab.Item>
+    </Tabs>
+  ),
+  args: {
+    variant: "default",
+    state: "default",
   },
 };
 
