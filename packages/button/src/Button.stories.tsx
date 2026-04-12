@@ -104,26 +104,14 @@ export const IconButton: Story = {
     size: "icon",
     variant: "primary",
     children: (
-      <Icon
-        name="plus"
-        size="sm"
-        variant="clear"
-        className="text-text-on-primary"
-        aria-hidden
-      />
+      <Icon name="plus" size="sm" variant="clear" color="inherit" aria-hidden />
     ),
     "aria-label": "Add",
   },
 };
 
 const fabPlusIcon = (
-  <Icon
-    name="plus"
-    size="md"
-    variant="clear"
-    className="text-text-on-primary"
-    aria-hidden
-  />
+  <Icon name="plus" size="md" variant="clear" color="inherit" aria-hidden />
 );
 
 /** Matches [Abacus App Shell FAB](https://www.figma.com/design/y70O9MsPCJeRCOJS8YGpCp/Abacus?node-id=107-177) — 56×56, primary, `shadow-lg`. */

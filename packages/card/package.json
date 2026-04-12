@@ -13,7 +13,8 @@
     }
   },
   "dependencies": {
-    "@design-system/typography": "workspace:*"
+    "@design-system/typography": "workspace:*",
+    "tailwind-merge": "^3.0.2"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
