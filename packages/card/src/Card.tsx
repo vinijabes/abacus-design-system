@@ -4,6 +4,7 @@ import {
   type ReactNode,
 } from "react";
 import { Typography } from "@design-system/typography";
+import { twMerge } from "tailwind-merge";
 
 function mergeClassNames(...parts: (string | undefined)[]): string {
   return parts.filter(Boolean).join(" ").trim();
@@ -20,7 +21,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   return (
     <div
       ref={ref}
-      className={mergeClassNames(
+      className={twMerge(
         "rounded-xl border border-solid border-border-color bg-input-background text-text-on-background",
         className,
       )}

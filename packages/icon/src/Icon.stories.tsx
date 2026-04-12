@@ -29,6 +29,7 @@ const meta = {
         "info",
         "muted",
         "foreground",
+        "inherit",
       ],
     },
   },

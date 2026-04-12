@@ -14,7 +14,9 @@ export type IconColor =
   | "destructive"
   | "info"
   | "muted"
-  | "foreground";
+  | "foreground"
+  /** Use the parent `color` (e.g. `Button` text utilities). */
+  | "inherit";
 
 const glyphPx: Record<IconSize, number> = {
   sm: 16,
@@ -46,6 +48,7 @@ const solidColor: Record<IconColor, string> = {
   muted: "bg-border-color text-text-on-muted",
   /** Matches Typography default ink (`text-text-on-background`). */
   foreground: "bg-bg-muted text-text-on-background",
+  inherit: "bg-bg-muted text-inherit",
 };
 
 const outlineColor: Record<IconColor, string> = {
@@ -58,6 +61,7 @@ const outlineColor: Record<IconColor, string> = {
   muted: "border border-border-color bg-transparent text-text-on-muted",
   foreground:
     "border border-border-color bg-transparent text-text-on-background",
+  inherit: "border border-border-color bg-transparent text-inherit",
 };
 
 const ghostColor: Record<IconColor, string> = {
@@ -74,6 +78,8 @@ const ghostColor: Record<IconColor, string> = {
     "bg-transparent text-text-on-muted hover:bg-bg-accent hover:text-text-on-accent",
   foreground:
     "bg-transparent text-text-on-background hover:bg-bg-accent hover:text-text-on-accent",
+  inherit:
+    "bg-transparent text-inherit hover:bg-bg-accent hover:text-text-on-accent",
 };
 
 const clearColor: Record<IconColor, string> = {
@@ -84,6 +90,7 @@ const clearColor: Record<IconColor, string> = {
   info: "text-info",
   muted: "text-text-on-muted",
   foreground: "text-text-on-background",
+  inherit: "text-inherit",
 };
 
 function mergeClassNames(...parts: (string | undefined)[]): string {

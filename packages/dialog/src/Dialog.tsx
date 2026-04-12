@@ -132,7 +132,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(function Dialog(
             className="inline-flex size-8 items-center justify-center rounded-md text-text-on-muted transition-colors hover:bg-bg-accent hover:text-text-on-accent"
             onClick={onCloseButtonClick}
           >
-            <Icon name="x" size="sm" variant="clear" />
+            <Icon name="x" size="sm" variant="clear" color="inherit" />
           </button>
         </div>
 
