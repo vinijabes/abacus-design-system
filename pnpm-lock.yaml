@@ -41,6 +41,9 @@ importers:
       '@design-system/button':
         specifier: workspace:*
         version: link:../../packages/button
+      '@design-system/button-group':
+        specifier: workspace:*
+        version: link:../../packages/button-group
       '@design-system/card':
         specifier: workspace:*
         version: link:../../packages/card
@@ -194,11 +197,44 @@ importers:
         specifier: ^5.7.0
         version: 5.9.3
 
+  packages/button-group:
+    devDependencies:
+      '@design-system/button':
+        specifier: workspace:*
+        version: link:../button
+      '@design-system/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@storybook/react':
+        specifier: 'catalog:'
+        version: 10.3.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(storybook@10.3.4(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3)
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.0.0
+        version: 19.2.3(@types/react@19.2.14)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      storybook:
+        specifier: 'catalog:'
+        version: 10.3.4(@testing-library/dom@10.4.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      typescript:
+        specifier: ^5.7.0
+        version: 5.9.3
+
   packages/card:
     dependencies:
       '@design-system/typography':
         specifier: workspace:*
         version: link:../typography
+      tailwind-merge:
+        specifier: ^3.0.2
+        version: 3.5.0
     devDependencies:
       '@design-system/button':
         specifier: workspace:*
@@ -2241,6 +2277,9 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  tailwind-merge@3.5.0:
+    resolution: {integrity: sha512-I8K9wewnVDkL1NTGoqWmVEIlUcB9gFriAEkXkfCjX5ib8ezGxtR3xD7iZIxrfArjEsH7F1CHD4RFUtxefdqV/A==}
+
   tailwindcss@4.2.2:
     resolution: {integrity: sha512-KWBIxs1Xb6NoLdMVqhbhgwZf2PGBpPEiwOqgI4pFIYbNTfBXiKYyWoTsXgBQ9WFg/OlhnvHaY+AEpW7wSmFo2Q==}
 
@@ -4011,6 +4050,8 @@ snapshots:
       has-flag: 4.0.0
 
   supports-preserve-symlinks-flag@1.0.0: {}
+
+  tailwind-merge@3.5.0: {}
 
   tailwindcss@4.2.2: {}
 
